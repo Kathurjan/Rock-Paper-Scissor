@@ -92,10 +92,10 @@ public class GameViewController implements Initializable {
             Results.setText(result.getWinnerPlayer().getPlayerType()+"Winner");
         }
         if (result.getType()== ResultType.Tie){
-            Results.setText(result.getWinnerPlayer().getPlayerType()+"No one wins,try again");
+            Results.setText("No one wins,try again");
         }
 
-        winsLoses.setText("Player wins "+playerwins + " Bot wins" + botwins);
+        winsLoses.setText("Player wins: " +playerwins + " Bot wins: " + botwins);
     }
 
     public void setPlayerName(ActionEvent actionEvent) {
