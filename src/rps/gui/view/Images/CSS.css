@@ -1,0 +1,19 @@
+#Paper{
+    -fx-background-image: url(Paper.png);
+    -fx-background-repeat: stretch;
+    -fx-background-size: 100px, 100px;
+    -fx-background-position: center;
+}
+#Scissor{
+    -fx-background-image: url(Scissor.png);
+    -fx-background-repeat: stretch;
+    -fx-background-size: 100px, 100px;
+    -fx-background-position: center;
+}
+#Rock{
+    -fx-background-image: url(Rock.png);
+    -fx-background-repeat: stretch;
+    -fx-background-size: 100px, 100px;
+    -fx-background-position: center;
+
+}

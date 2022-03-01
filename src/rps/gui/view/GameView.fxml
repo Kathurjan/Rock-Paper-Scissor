@@ -12,19 +12,19 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="285.0" prefWidth="598.0">
                <children>
-                  <Button fx:id="Paper" layoutX="122.0" layoutY="86.0" mnemonicParsing="false" text="Paper" />
-                  <Button fx:id="Scissor" layoutX="273.0" layoutY="86.0" mnemonicParsing="false" text="Scissor" />
-                  <Button fx:id="Rock" layoutX="456.0" layoutY="86.0" mnemonicParsing="false" text="Rock" />
+                  <Button fx:id="Paper" layoutX="50.0" layoutY="31.0" mnemonicParsing="false" onAction="#MakeMove" prefHeight="115.0" prefWidth="161.0" stylesheets="@Images/CSS.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="387.0" AnchorPane.topAnchor="31.0" />
+                  <Button fx:id="Scissor" layoutX="226.0" layoutY="30.0" mnemonicParsing="false" onAction="#MakeMove" prefHeight="115.0" prefWidth="161.0" stylesheets="@Images/CSS.css" />
+                  <Button fx:id="Rock" layoutX="416.0" layoutY="28.0" mnemonicParsing="false" onAction="#MakeMove" prefHeight="121.0" prefWidth="161.0" stylesheets="@Images/CSS.css" />
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="242.0" prefWidth="661.0">
                <children>
-                  <Label fx:id="PlayerName" layoutX="22.0" layoutY="81.0" text="Label" />
+                  <Label fx:id="PlayerName" layoutX="22.0" layoutY="81.0" text="PlayerName" />
                   <TextField fx:id="setName" layoutX="10.0" layoutY="14.0" />
-                  <Label fx:id="wins" layoutX="151.0" layoutY="149.0" text="Label" />
-                  <Label fx:id="draws" layoutX="224.0" layoutY="149.0" text="Label" />
-                  <Label fx:id="loses" layoutX="308.0" layoutY="149.0" text="Label" />
-                  <Button layoutX="165.0" layoutY="14.0" mnemonicParsing="false" onAction="#setPlayerName" text="Set PlayerName" />
+                  <Button fx:id="setplayerName" layoutX="165.0" layoutY="14.0" mnemonicParsing="false" onAction="#setPlayerName" text="Set PlayerName" />
+                  <Label fx:id="Botname" layoutX="540.0" layoutY="81.0" text="Ai Name" />
+                  <Label fx:id="Results" layoutX="151.0" layoutY="155.0" />
+                  <Label fx:id="winsLoses" layoutX="379.0" layoutY="147.0" />
                </children>
             </AnchorPane>
         </items>
