@@ -4,6 +4,7 @@ package rps.gui.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -16,7 +17,11 @@ import rps.bll.player.Player;
 import rps.bll.player.PlayerType;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
+
+import static rps.bll.player.PlayerType.Human;
 
 /**
  *
@@ -46,7 +51,11 @@ public class GameViewController implements Initializable {
     Move playerMove;
 
     public GameViewController(){
-        player = new Player("bob", PlayerType.Human);
+       /* try {player = new Player(PlayerName.getText(), PlayerType.Human);}
+        catch(NullPointerException ex){
+            System.out.println(ex);
+        }*/
+        player = new Player("bob", Human);
         AI = new Player("jens",PlayerType.AI);
         gameManager = new GameManager(player,AI);
     }
@@ -61,15 +70,23 @@ public class GameViewController implements Initializable {
     public void MakeMove(ActionEvent actionEvent) {
         Button btnclicked = (Button) actionEvent.getSource();
 
-        if (btnclicked == Rock){
+        if (btnclicked == Rock && setName != null){
             playerMove = Move.Rock;
         }
-        if (btnclicked == Paper){
+        if (btnclicked == Paper && setName != null){
             playerMove = Move.Paper;
         }
-        if (btnclicked == Scissor){
+        if (btnclicked == Scissor && setName != null){
             playerMove = Move.Scissor;
         }
+        /*else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Name missing");
+            alert.setHeaderText("set a name");
+            alert.setContentText("please write a name");
+            alert.showAndWait();
+
+        }*/
         gamePlay();
     }
 
@@ -78,18 +95,22 @@ public class GameViewController implements Initializable {
         Result result = null;
         int botwins = 0;
         int playerwins = 0;
-        for (Result result1:gameManager.getGameState().getHistoricResults()){
-            if (result1.getWinnerPlayer().getPlayerType()==PlayerType.AI && result1.getType()!=ResultType.Tie){
+        for (Result rs:gameManager.getGameState().getHistoricResults()){
+            if (rs.getWinnerPlayer().getPlayerType()==PlayerType.AI && rs.getType()!=ResultType.Tie){
                 botwins++;
                }
-            if (result1.getWinnerPlayer().getPlayerType()==PlayerType.Human && result1.getType()!=ResultType.Tie){
+            if (rs.getWinnerPlayer().getPlayerType()== Human && rs.getType()!=ResultType.Tie){
                 playerwins ++;
+
             }
 
-            result = result1;
+            result = rs;
         }
-        if (result.getType() == ResultType.Win){
-            Results.setText(result.getWinnerPlayer().getPlayerType()+"Winner");
+        if (result.getType() == ResultType.Win && result.getWinnerPlayer().getPlayerType() == Human){
+            Results.setText(PlayerName.getText() + " Wins");
+        }
+        if (result.getType() == ResultType.Win && result.getWinnerPlayer().getPlayerType() == PlayerType.AI){
+            Results.setText(getBotName() + " wins");
         }
         if (result.getType()== ResultType.Tie){
             Results.setText("No one wins,try again");
@@ -102,9 +123,21 @@ public class GameViewController implements Initializable {
 
         PlayerName.setText(setName.getText());
         setName.setVisible(false);
-        Botname.setText("Hal");
         setplayerName.setVisible(false);
-    }
 
+    }
+    private String getBotName(){
+        String[] botNames = new String[]{
+       "HAL",
+       "Ash",
+        "Wall-E",
+       "Ava",
+       " T-800"};
+        int random = new Random().nextInt(botNames.length);
+
+        return botNames[random];
+
+
+    }
 
 }
