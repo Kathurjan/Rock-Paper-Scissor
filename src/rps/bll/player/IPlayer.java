@@ -4,6 +4,8 @@ package rps.bll.player;
 import rps.bll.game.IGameState;
 import rps.bll.game.Move;
 
+import java.util.ArrayList;
+
 /**
  * Defines a Player in the game including its strategy (doMove())
  *
@@ -23,6 +25,7 @@ public interface IPlayer {
      * @return
      */
     public PlayerType getPlayerType();
+    public ArrayList<Move> getMoveResult();
 
 
     /**
@@ -32,4 +35,6 @@ public interface IPlayer {
      * @param state
      */
     public Move doMove(IGameState state);
+
+
 }

@@ -17,7 +17,6 @@ import rps.bll.player.Player;
 import rps.bll.player.PlayerType;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -49,16 +48,18 @@ public class GameViewController implements Initializable {
     private IPlayer AI;
     private GameManager gameManager;
     Move playerMove;
+    private boolean validated = false;
 
-    public GameViewController(){
-       /* try {player = new Player(PlayerName.getText(), PlayerType.Human);}
+    public GameViewController() {
+       /*try {player = new Player(PlayerName.getText(), PlayerType.Human);}
         catch(NullPointerException ex){
             System.out.println(ex);
         }*/
         player = new Player("bob", Human);
-        AI = new Player("jens",PlayerType.AI);
-        gameManager = new GameManager(player,AI);
+        AI = new Player("jens", PlayerType.AI);
+        gameManager = new GameManager(player, AI);
     }
+
     /**
      * Initializes the controller class.
      */
@@ -67,63 +68,81 @@ public class GameViewController implements Initializable {
         // TODO
     }
 
-    public void MakeMove(ActionEvent actionEvent) {
+    public void checkPlayerMove(ActionEvent actionEvent) {
+
+
         Button btnclicked = (Button) actionEvent.getSource();
 
-        if (btnclicked == Rock && setName != null){
-            playerMove = Move.Rock;
-        }
-        if (btnclicked == Paper && setName != null){
-            playerMove = Move.Paper;
-        }
-        if (btnclicked == Scissor && setName != null){
-            playerMove = Move.Scissor;
-        }
-        /*else{
+        if (validated == false) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Name missing");
             alert.setHeaderText("set a name");
             alert.setContentText("please write a name");
             alert.showAndWait();
+        } else if (btnclicked == Rock && setName != null) {
+            playerMove = Move.Rock;
+            startGame();
+            player.getMoveResult();
 
-        }*/
-        gamePlay();
+        } else if (btnclicked == Paper && setName != null) {
+            playerMove = Move.Paper;
+            startGame();
+            player.getMoveResult();
+
+        } else if (btnclicked == Scissor && setName != null) {
+            playerMove = Move.Scissor;
+            startGame();
+            player.getMoveResult();
+
+        }
     }
 
-    private void gamePlay(){
+
+    private void startGame() {
         gameManager.playRound(playerMove);
         Result result = null;
         int botwins = 0;
         int playerwins = 0;
-        for (Result rs:gameManager.getGameState().getHistoricResults()){
-            if (rs.getWinnerPlayer().getPlayerType()==PlayerType.AI && rs.getType()!=ResultType.Tie){
+
+        for (Result rs : gameManager.getGameState().getHistoricResults()) {
+            if (rs.getWinnerPlayer().getPlayerType() == PlayerType.AI && rs.getType() != ResultType.Tie) {
                 botwins++;
-               }
-            if (rs.getWinnerPlayer().getPlayerType()== Human && rs.getType()!=ResultType.Tie){
-                playerwins ++;
+
+            }
+            if (rs.getWinnerPlayer().getPlayerType() == Human && rs.getType() != ResultType.Tie) {
+                playerwins++;
 
             }
 
             result = rs;
         }
-        if (result.getType() == ResultType.Win && result.getWinnerPlayer().getPlayerType() == Human){
+        if (result.getType() == ResultType.Win && result.getWinnerPlayer().getPlayerType() == Human) {
             Results.setText(PlayerName.getText() + " Wins");
         }
-        if (result.getType() == ResultType.Win && result.getWinnerPlayer().getPlayerType() == PlayerType.AI){
+        if (result.getType() == ResultType.Win && result.getWinnerPlayer().getPlayerType() == PlayerType.AI) {
             Results.setText(getBotName() + " wins");
         }
-        if (result.getType()== ResultType.Tie){
+        if (result.getType() == ResultType.Tie) {
             Results.setText("No one wins,try again");
         }
 
-        winsLoses.setText("Player wins: " +playerwins + " Bot wins: " + botwins);
+        winsLoses.setText("Player wins: " + playerwins + " Bot wins: " + botwins);
+
+
     }
+
+
+
+
+
+
 
     public void setPlayerName(ActionEvent actionEvent) {
 
         PlayerName.setText(setName.getText());
         setName.setVisible(false);
         setplayerName.setVisible(false);
+        validated = true;
 
     }
     private String getBotName(){

@@ -17,3 +17,14 @@
     -fx-background-position: center;
 
 }
+.label {
+    -fx--font-size: 15;
+    -fx-font-style: Verdana;
+    -fx-font-weight: bold;
+}
+#Toppane{
+    -fx-background-color: #f2f2f2;
+}
+#setplayerName {
+
+}

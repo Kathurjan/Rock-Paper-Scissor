@@ -6,25 +6,25 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rps.gui.controller.GameViewController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rps.gui.controller.GameViewController">
    <children>
       <SplitPane dividerPositions="0.5" layoutX="164.0" layoutY="41.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="285.0" prefWidth="598.0">
+          <AnchorPane fx:id="Toppane" minHeight="0.0" minWidth="0.0" prefHeight="285.0" prefWidth="598.0" stylesheets="@Images/CSS.css">
                <children>
-                  <Button fx:id="Paper" layoutX="50.0" layoutY="31.0" mnemonicParsing="false" onAction="#MakeMove" prefHeight="115.0" prefWidth="161.0" stylesheets="@Images/CSS.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="387.0" AnchorPane.topAnchor="31.0" />
-                  <Button fx:id="Scissor" layoutX="226.0" layoutY="30.0" mnemonicParsing="false" onAction="#MakeMove" prefHeight="115.0" prefWidth="161.0" stylesheets="@Images/CSS.css" />
-                  <Button fx:id="Rock" layoutX="416.0" layoutY="28.0" mnemonicParsing="false" onAction="#MakeMove" prefHeight="121.0" prefWidth="161.0" stylesheets="@Images/CSS.css" />
+                  <Button fx:id="Paper" layoutX="50.0" layoutY="31.0" mnemonicParsing="false" onAction="#checkPlayerMove" prefHeight="115.0" prefWidth="161.0" stylesheets="@Images/CSS.css" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="387.0" AnchorPane.topAnchor="31.0" />
+                  <Button fx:id="Scissor" layoutX="226.0" layoutY="30.0" mnemonicParsing="false" onAction="#checkPlayerMove" prefHeight="115.0" prefWidth="161.0" stylesheets="@Images/CSS.css" />
+                  <Button fx:id="Rock" layoutX="416.0" layoutY="28.0" mnemonicParsing="false" onAction="#checkPlayerMove" prefHeight="121.0" prefWidth="161.0" stylesheets="@Images/CSS.css" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="242.0" prefWidth="661.0">
                <children>
-                  <Label fx:id="PlayerName" layoutX="22.0" layoutY="81.0" text="PlayerName" />
+                  <Label fx:id="PlayerName" layoutX="22.0" layoutY="81.0" stylesheets="@Images/CSS.css" text="PlayerName" />
                   <TextField fx:id="setName" layoutX="10.0" layoutY="14.0" />
-                  <Button fx:id="setplayerName" layoutX="165.0" layoutY="14.0" mnemonicParsing="false" onAction="#setPlayerName" text="Set PlayerName" />
-                  <Label fx:id="Botname" layoutX="540.0" layoutY="81.0" text="Ai Name" />
-                  <Label fx:id="Results" layoutX="151.0" layoutY="155.0" />
-                  <Label fx:id="winsLoses" layoutX="379.0" layoutY="147.0" />
+                  <Button fx:id="setplayerName" layoutX="165.0" layoutY="14.0" mnemonicParsing="false" onAction="#setPlayerName" prefWidth="161.0" text="Set PlayerName" />
+                  <Label fx:id="Botname" layoutX="540.0" layoutY="81.0" stylesheets="@Images/CSS.css" text="Ai Name" />
+                  <Label fx:id="Results" layoutX="151.0" layoutY="155.0" stylesheets="@Images/CSS.css" />
+                  <Label fx:id="winsLoses" layoutX="379.0" layoutY="147.0" stylesheets="@Images/CSS.css" />
                </children>
             </AnchorPane>
         </items>

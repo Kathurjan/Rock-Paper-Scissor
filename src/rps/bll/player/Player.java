@@ -1,13 +1,15 @@
 package rps.bll.player;
 
 //Project imports
-import rps.bll.game.IGameState;
-import rps.bll.game.Move;
-import rps.bll.game.Result;
+import rps.bll.game.*;
+import rps.gui.controller.GameViewController;
 
 //Java imports
 import java.util.ArrayList;
 import java.util.Random;
+
+import static rps.bll.player.PlayerType.AI;
+import static rps.bll.player.PlayerType.Human;
 
 /**
  * Example implementation of a player.
@@ -18,13 +20,17 @@ public class Player implements IPlayer {
 
     private String name;
     private PlayerType type;
-
+    private GameViewController gv;
+    private GameManager ge;
+    private IPlayer player;
+    private IPlayer AI;
     /**
      * @param name
      */
     public Player(String name, PlayerType type) {
         this.name = name;
         this.type = type;
+        ge = new GameManager(player,AI);
     }
 
 
@@ -39,6 +45,27 @@ public class Player implements IPlayer {
         return type;
     }
 
+    public ArrayList<Move> getMoveResult(){
+        ArrayList<Move> moveResult = new ArrayList<>();
+        for ( Result rs: ge.getGameState().getHistoricResults()){
+            if (rs.getWinnerPlayer().getPlayerType() == Human && rs.getType() != ResultType.Tie){
+                if (rs.getWinnerMove().equals(Move.Rock)){
+                    moveResult.add(Move.Paper);
+                }
+                if (rs.getWinnerMove().equals(Move.Paper)){
+                    moveResult.add(Move.Scissor);
+                }
+                if (rs.getWinnerMove().equals(Move.Scissor)){
+                    moveResult.add(Move.Rock);
+                }
+
+            }
+        }
+        return moveResult;
+
+    }
+
+
 
     /**
      * Decides the next move for the bot...
@@ -51,9 +78,21 @@ public class Player implements IPlayer {
 
         //Historic data to analyze and decide next move...
         ArrayList<Result> results = (ArrayList<Result>) state.getHistoricResults();
-        Random random = new Random();
+        for (int i = 0; i < 6; i++) {
+            getMoveResult().add(Move.Rock);
+            getMoveResult().add(Move.Paper);
+            getMoveResult().add(Move.Scissor);
+
+        }
+
         Move AiMove;
-        int result = random.nextInt(3) + 1;
+        Random random = new Random();
+        int randmove = random.nextInt(getMoveResult().size());
+        AiMove = getMoveResult().get(randmove);
+
+
+       /*  Random random = new Random();
+       int result = random.nextInt(3) + 1;
         switch (result) {
             case 1:
                 AiMove = Move.Rock;
@@ -67,6 +106,7 @@ public class Player implements IPlayer {
                 
             
         }
+        */
         return AiMove;
     }
 }
