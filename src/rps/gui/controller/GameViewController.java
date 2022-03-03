@@ -82,17 +82,15 @@ public class GameViewController implements Initializable {
         } else if (btnclicked == Rock && setName != null) {
             playerMove = Move.Rock;
             startGame();
-            player.getMoveResult();
+
 
         } else if (btnclicked == Paper && setName != null) {
             playerMove = Move.Paper;
             startGame();
-            player.getMoveResult();
 
         } else if (btnclicked == Scissor && setName != null) {
             playerMove = Move.Scissor;
             startGame();
-            player.getMoveResult();
 
         }
     }

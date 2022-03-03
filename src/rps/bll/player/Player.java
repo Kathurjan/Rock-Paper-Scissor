@@ -61,6 +61,10 @@ public class Player implements IPlayer {
 
             }
         }
+        moveResult.add(Move.Rock);
+        moveResult.add(Move.Paper);
+        moveResult.add(Move.Scissor);
+
         return moveResult;
 
     }
@@ -76,14 +80,7 @@ public class Player implements IPlayer {
     @Override
     public Move doMove(IGameState state) {
 
-        //Historic data to analyze and decide next move...
-        ArrayList<Result> results = (ArrayList<Result>) state.getHistoricResults();
-        for (int i = 0; i < 6; i++) {
-            getMoveResult().add(Move.Rock);
-            getMoveResult().add(Move.Paper);
-            getMoveResult().add(Move.Scissor);
 
-        }
 
         Move AiMove;
         Random random = new Random();
