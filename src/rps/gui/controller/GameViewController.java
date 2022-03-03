@@ -67,7 +67,8 @@ public class GameViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-
+    // first checks if there is a name set, if thats true then checks what the player move is
+    // and starts the game.
     public void checkPlayerMove(ActionEvent actionEvent) {
 
 
@@ -95,7 +96,8 @@ public class GameViewController implements Initializable {
         }
     }
 
-
+    // the for loops gets the game state and the historic result, after which the if statements checks if its the bot
+    // or the human how won by checking if its not a tie and which playertype.
     private void startGame() {
         gameManager.playRound(playerMove);
         Result result = null;

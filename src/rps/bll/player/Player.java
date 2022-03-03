@@ -81,13 +81,13 @@ public class Player implements IPlayer {
     public Move doMove(IGameState state) {
 
 
-
+        // working ai, very simple version ofc.
         Move AiMove;
         Random random = new Random();
         int randmove = random.nextInt(getMoveResult().size());
         AiMove = getMoveResult().get(randmove);
 
-
+        // used for the first test.
        /*  Random random = new Random();
        int result = random.nextInt(3) + 1;
         switch (result) {
